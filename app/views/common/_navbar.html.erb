@@ -6,10 +6,20 @@
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <div class="navbar-nav mr-auto">
-      <%= link_to("Home", '#') %>
+      <%= link_to("Home", '#', class: "nav-item nav-link") %>
     </div>
     <div class="navbar-nav">
-      <%= link_to("Login", '#', class: "nav-link nav-item") %>
+      <% if !current_user %>
+        <%= link_to("Register", new_user_registration_path, class: "nav-item nav-link") %>
+        <%= link_to("Login", new_user_session_path, class: "nav-link nav-item") %>
+      <% else %>
+        <div class="dropdown">
+          <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to("Logout", destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
