@@ -1,0 +1,8 @@
+<div class="my-orders">
+  <h2>My Orders</h2>
+  <% @orders.each do |order| %>
+    <%= order.id %>
+    <br />
+    <%= order.order_no %>
+  <% end %>
+</div>
